@@ -1,7 +1,6 @@
 function getRandom() {
 
-    //make actual call to get the array full of randomly selected cards from the database
-    //store as urls or relative paths??
+    //will actually get this from the database
 
     var cards = [
         "images/Adventurer.jpg",
@@ -270,19 +269,50 @@ function getRandom() {
     ];
     
     console.log(randomCards);
-
-    //loop through and assign
-    //but for now, filler, do this to show it works:
-    $("#1").attr("src", randomCards[0]);
-    $("#2").attr("src", randomCards[1]);
-    $("#3").attr("src", randomCards[2]);
-    $("#4").attr("src", randomCards[3]);
-    $("#5").attr("src", randomCards[4]);
-
-    $("#6").attr("src", randomCards[5]);
-    $("#7").attr("src", randomCards[6]);
-    $("#8").attr("src", randomCards[7]);
-    $("#9").attr("src", randomCards[8]);
-    $("#10").attr("src", randomCards[9]);
-
+    return randomCards;
+    
 }
+
+$(document).ready(function() {
+
+    $("#button").click(function(){
+        cards = getRandom();
+        $("#1").attr("src", cards[0]);
+        $("#2").attr("src", cards[1]);
+        $("#3").attr("src", cards[2]);
+        $("#4").attr("src", cards[3]);
+        $("#5").attr("src", cards[4]);
+
+        $("#6").attr("src", cards[5]);
+        $("#7").attr("src", cards[6]);
+        $("#8").attr("src", cards[7]);
+        $("#9").attr("src", cards[8]);
+        $("#10").attr("src", cards[9]);
+    });
+    
+    $(".picture").click(function(){
+        cards = getRandom();
+        $(this).attr("src", cards[0]);
+    });
+
+    $(".card").mouseover(function(){
+        $(this).css("opacity", ".7");
+        $("#leftText").html("<br><br><h4>Click to swap out card</h4><br><br>")
+
+    });
+
+    $(".card").mouseout(function(){
+        $(this).css("opacity", "1");
+        $("#leftText").html("<br><h4>Create a new randomized deck for your next Dominion game!</h4><p><i>&nbsp&nbspClick to make modifications </i><br></p>")
+    });
+
+    $("#button").mouseover(function(){
+        $("#leftText").html("<br><br><h4>Replace all cards</h4><br><br>")
+    });
+
+    $("#button").mouseout(function(){
+        $("#leftText").html("<br><h4>Create a new randomized deck for your next Dominion game!</h4><p><i>&nbsp&nbspClick to make modifications </i><br></p>")
+    });
+
+});
+
